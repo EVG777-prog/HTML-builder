@@ -16,8 +16,8 @@ fs.writeFile(fileName, "", function(error) {
 
 function readConsole() {
     rl.question('', (answer) => {
-        if (answer.includes('end')) {
-            console.log('Завершаем программу, обнаружен "end".');
+        if (answer.includes('exit')) {
+            console.log('Завершаем программу, обнаружен "exit".');
             fs.appendFile(fileName, answer + '\n', function(error) {
                 if (error) throw error; // если возникла ошибка
             });
