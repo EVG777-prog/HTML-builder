@@ -10,20 +10,23 @@ fs.mkdir(adressDirNew, (err) => {
         console.log('Directory already exsist');
         removeFiles(adressDirNew);
     } else {
-        copyFiles();
+        copyFiles(adressDir, adressDirNew);
     }
 });
 
-function copyFiles() {
-    fs.readdir(adressDir, (err, data) => {
+function copyFiles(dir, dir2) {
+    fs.readdir(dir, (err, data) => {
         for (let i of data) {
-            const fileFullName = adressDir + "\\" + i;
-            const fileFullNameNew = adressDirNew + "\\" + i;
+            const fileFullName = dir + "\\" + i;
+            const fileFullNameNew = dir2 + "\\" + i;
             copyFile(fileFullName, fileFullNameNew, callback);
 
             function callback(err) {
-                if (err) throw err;
-                console.log(`${fileFullName} was copied to ${fileFullNameNew}`);
+                if (err) {
+                    console.log(`Error copy file ${i}`);
+                } else {
+                    console.log(`${fileFullName} was copied to ${fileFullNameNew}`);
+                }
             }
         }
     });
@@ -34,10 +37,10 @@ function removeFiles(dir) {
         for (let i of data) {
             const fileFullName = dir + "\\" + i;
             fs.unlink(fileFullName, (err) => {
-                if (err) throw err;
+                if (err) console.log('Error delete file');
             });
             console.log(`Delete ${i}`);
         }
     });
-    copyFiles();
+    copyFiles(adressDir, adressDirNew);
 }

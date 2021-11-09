@@ -1,51 +1,34 @@
-< !DOCTYPE html >
-    <
-    html lang = "en" >
+const fs = require('fs');
+const path = require('path');
+const readline = require('readline');
+const { stdin: input, stdout: output } = require('process');
+const rl = readline.createInterface({ input, output });
 
-    <
-    head >
-    <
-    meta charset = "UTF-8" >
-    <
-    meta http - equiv = "X-UA-Compatible"
-content = "IE=edge" >
-    <
-    meta name = "viewport"
-content = "width=device-width, initial-scale=1.0" >
-    <
-    link rel = "stylesheet"
-href = "bundle.css" >
-    <
-    title > Solar system < /title> <
-    /head>
 
-<
-body >
-    <
-    div class = "solar-syst" >
-    <
-    div class = "sun" > < /div> <
-    div class = "mercury" > < /div> <
-    div class = "venus" > < /div> <
-    div class = "earth" > < /div> <
-    div class = "mars" > < /div> <
-    div class = "jupiter" > < /div> <
-    div class = "saturn" > < /div> <
-    div class = "uranus" > < /div> <
-    div class = "neptune" > < /div> <
-    div class = "pluto" > < /div> <
-    div class = "asteroids-belt" > < /div> <
-    /div> <
-    /body>
+const fileName = __dirname + '\\text.txt';
 
-<
-/html> } else {
-fs.appendFile(nameFile, answer + '\n', function(error) {
-if (error) throw error; // если возникла ошибка
-readConsole();
+// create file - text.txt
+fs.writeFile(fileName, "", function(error) {
+    if (error) throw error; // если возникла ошибка
+    console.log("File created.");
 });
-}
-});
+
+
+function readConsole() {
+    rl.question('', (answer) => {
+        if (answer.includes('end')) {
+            console.log('Завершаем программу, обнаружен "end".');
+            fs.appendFile(fileName, answer + '\n', function(error) {
+                if (error) throw error; // если возникла ошибка
+            });
+            rl.close();
+        } else {
+            fs.appendFile(fileName, answer + '\n', function(error) {
+                if (error) throw error; // если возникла ошибка
+                readConsole();
+            });
+        }
+    });
 }
 
 readConsole();
