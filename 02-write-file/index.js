@@ -5,7 +5,7 @@ const { stdin: input, stdout: output } = require('process');
 const rl = readline.createInterface({ input, output });
 
 
-const fileName = __dirname + '\\text.txt';
+const fileName = path.join(__dirname, 'text.txt');
 
 // create file - text.txt
 fs.writeFile(fileName, "", function(error) {

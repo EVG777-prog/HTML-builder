@@ -5,7 +5,7 @@ const readline = require('readline');
 
 const { stdin: input, stdout: output } = require('process');
 
-const nameFile = __dirname + '\\project-dist\\bundle.css';
+const nameFile = path.join(__dirname, 'project-dist', 'bundle.css');
 
 fs.writeFile(nameFile, "", function(error) {
     if (error) throw error; // если возникла ошибка

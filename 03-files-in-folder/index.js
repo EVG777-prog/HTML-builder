@@ -3,7 +3,7 @@ const path = require('path');
 const { stat } = require('fs');
 
 
-const adressDir = __dirname + '\\secret-folder';
+const adressDir = path.join(__dirname, 'secret-folder');
 
 fs.readdir(adressDir, (err, data) => {
     for (let i of data) {

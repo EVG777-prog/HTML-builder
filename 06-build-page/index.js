@@ -3,7 +3,7 @@ const path = require('path');
 const { stat, copyFile, constants } = require('fs');
 
 
-const adressDirNew = __dirname + '\\project-dist';
+const adressDirNew = path.join(__dirname, 'project-dist');
 
 fs.mkdir(adressDirNew, (err) => {
     if (err) {

@@ -2,8 +2,8 @@ const fs = require('fs');
 const path = require('path');
 const { copyFile, constants } = require('fs');
 
-const adressDir = __dirname + '\\files';
-const adressDirNew = __dirname + '\\files-copy';
+const adressDir = path.join(__dirname, 'files');
+const adressDirNew = path.join(__dirname, 'files-copy');
 
 fs.mkdir(adressDirNew, (err) => {
     if (err) {
