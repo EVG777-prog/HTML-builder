@@ -7,7 +7,7 @@ const adressDir = path.join(__dirname, 'secret-folder');
 
 fs.readdir(adressDir, (err, data) => {
     for (let i of data) {
-        const fileFullName = adressDir + "\\" + i;
+        const fileFullName = path.join(adressDir, i);
         stat(fileFullName, (err, stats) => {
             if (err) throw err;
             if (!stats.isDirectory()) {

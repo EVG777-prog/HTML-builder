@@ -17,8 +17,8 @@ fs.mkdir(adressDirNew, (err) => {
 function copyFiles(dir, dir2) {
     fs.readdir(dir, (err, data) => {
         for (let i of data) {
-            const fileFullName = dir + "\\" + i;
-            const fileFullNameNew = dir2 + "\\" + i;
+            const fileFullName = path.join(dir, i);
+            const fileFullNameNew = path.join(dir2, i);
             copyFile(fileFullName, fileFullNameNew, callback);
 
             function callback(err) {
@@ -35,7 +35,7 @@ function copyFiles(dir, dir2) {
 function removeFiles(dir) {
     fs.readdir(dir, (err, data) => {
         for (let i of data) {
-            const fileFullName = dir + "\\" + i;
+            const fileFullName = path.join(dir, i);
             fs.unlink(fileFullName, (err) => {
                 if (err) console.log('Error delete file');
             });
